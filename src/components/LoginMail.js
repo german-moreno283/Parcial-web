@@ -43,7 +43,7 @@ function LoginMail() {
         </Form>
         <br />
 
-        <Link to={{path:{goToLink}, state:{email:{email}}}}>
+        <Link to={goToLink} state={{email}}>
           <Button onClick={handleButtonPress} >Lets go</Button>
         </Link>
       </Container>

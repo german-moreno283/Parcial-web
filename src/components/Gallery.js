@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import Detail from "./Detail";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import "../styles/gallery.css";
 
-function Gallery(props) {
+function Gallery() {
+  const location = useLocation();
+  const canEdit = location.state || 0;
   const [parts, setPartsList] = useState([]);
-  const [detailId, setDetailId] = useState(1);
+  const [carModel, setCarModel] = useState("M3");
 
   useEffect(() => {
     let URL =
@@ -13,49 +16,49 @@ function Gallery(props) {
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setPartsList(data);
       });
   }, []);
 
   // Event handler to set detailId when a card is clicked
-  const handleCardClick = (partId) => {
-    setDetailId(partId)
+  const handleCardClick = (carModel) => {
+    setCarModel(carModel);
   };
+
+  // Divide parts into groups of three for displaying three elements per row
+  const rows = [];
+  for (let i = 0; i < parts.length; i += 3) {
+    rows.push(parts.slice(i, i + 3));
+  }
 
   return (
     <div>
-      <Container style={{flexWrap:"wrap"}}>
+      <Container>
         <h2>Partes Encontradas</h2>
-
-
-          <div>
-            {parts.map((part) => (
-
-              <Card 
-                key={part.carModel}
-                onClick={() => handleCardClick(part.id)}
-                style={{ cursor: "pointer" , }}
-                className="mb-3"
-              >
-                <div>
-                  <Card.Img
-                    src={part.image}
-                    width={"300px"}
-                    height={"200px"}
-                  ></Card.Img>
-                  <h1>{part.partName}</h1>
-                  <h3>{part.carMaker}</h3>
-                  <p>
-                    {part.price} - {part.carYear}
-                  </p>
-                </div>
-                <Link to = {"/parts/"+{detailId}}>Go to detail</Link>
-              </Card>
-
+        {rows.map((row, rowIndex) => (
+          <Row key={rowIndex}>
+            {row.map((part) => (
+              <Col key={part.carModel} xs={12} sm={6} md={4}>
+                <Card
+                  className="mb-3 tarjeta"
+                  onClick={() => handleCardClick(part.carModel)}
+                >
+                  <div>
+                    <Card.Img src={part.image} alt={part.partName} />
+                    <h2>{part.partName}</h2>
+                    <h3>{part.carMaker}</h3>
+                    <p>
+                      {part.price} - {part.carYear}
+                    </p>
+                  </div>
+                  <Link to={"/parts/" + carModel} state={{carModel:part.carModel, canEdit:canEdit}}>
+                    Go to detail
+                  </Link>
+                </Card>
+              </Col>
             ))}
-          </div>
-
+          </Row>
+        ))}
       </Container>
     </div>
   );

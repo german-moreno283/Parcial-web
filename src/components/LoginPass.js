@@ -1,18 +1,26 @@
 import React from "react";
 import { Form, Container, Button } from "react-bootstrap";
 import { useState } from "react";
-function LoginPass(props) {
+import { useLocation, Link } from "react-router-dom";
+function LoginPass() {
 
+  const canEdit = 1;
+  const [goToLink, setGoToLink] = useState("/pswd")
   const [pass, setpass] = useState("");
   const [passValid, setpassValid] = useState(false);
-
+  const location = useLocation()
+  const props = location.state || {};
+  console.log(props)
   const updatePassword = (event) => {
     setpass(event.target.value);
-    
     setpassValid(pass.length>=6?true:false);
+    setGoToLink(passValid?"/parts":"/pswd");
   };
 
-  const handleButtonPress = () => {};
+  const handleButtonPress = () => {
+    if (passValid){
+    console.log("Logged in succesfully")}
+  };
   return (
     <div>
       <Container>
@@ -37,7 +45,11 @@ function LoginPass(props) {
           </Form.Group>
         </Form>
         <br />
-        <Button>Acceder</Button>
+        <Link to={goToLink} state = {canEdit}>
+        <Button onClick={handleButtonPress}>
+          Acceder
+        </Button>
+        </Link>
       </Container>
     </div>
   );
