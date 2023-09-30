@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import "../styles/detail.css";
+import { FormattedMessage } from "react-intl";
 function Detail() {
   const location = useLocation();
   const props = location.state || {};
   const carModel = props.carModel;
   const canEdit = props.canEdit;
-  
+
   const [part, setPart] = useState({
     carModel: "defaultModel",
     image: "defaultImg",
@@ -47,25 +48,29 @@ function Detail() {
           <Col className="ml-5">
             <h1>{part.partName}</h1>
             <hr style={{ color: "black" }}></hr>
-            <span className="colorRed">Car Maker: </span>{" "}
+            <span className="colorRed"><FormattedMessage id="CarMaker"/>: </span>{" "}
             <span>{part.carMaker}</span>
             <br />
-            <span className="colorRed">Car Year: </span>{" "}
+            <span className="colorRed"><FormattedMessage id="CarYear"/>: </span>{" "}
             <span>{part.carYear}</span>
             <br />
-            <span className="colorRed">Car Model: </span>{" "}
+            <span className="colorRed"><FormattedMessage id="CarModel"/>: </span>{" "}
             <span>{part.carModel}</span>
             <br />
-            <span className="colorRed">Available Online: </span>{" "}
+            <span className="colorRed"><FormattedMessage id="AvailableOnline"/>: </span>{" "}
             <span>{part.available ? "Yes" : "No"}</span>
             <br />
-            <span className="colorRed">Price: </span> <span>{part.price}</span>
+            <span className="colorRed"><FormattedMessage id="Price"/>: </span> <span>{part.price}</span>
             <br />
-            <span className="colorRed">Description: </span>
+            <span className="colorRed"><FormattedMessage id="Description"/>: </span>
             <br></br>
-            {canEdit && part.description!="defaultDescription" &&
-            (<input defaultValue={part.description}></input>)}
-            {!canEdit && <p> {part.description}</p>}
+            {canEdit ? (
+              part.description != "defaultDescription" && (
+                <input defaultValue={part.description}></input>
+              )
+            ) : (
+              <p> {part.description}</p>
+            )}
           </Col>
         </Row>
       </Container>

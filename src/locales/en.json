@@ -1,0 +1,18 @@
+{
+  "Acceder": "Login",
+  "usaCuenta": "Use your UniAlpes account",
+  "ingresaContra": "Enter your password",
+  "ingresaEmail": "Enter your email address",
+  "irAContra": "Next page",
+  "encontrado": "Found Parts",
+  "invalidMail": "Your email does not have the correct format",
+  "invalidPass": "Your pass does not have the correct format",
+  "ShowPswd": "Show Password",
+
+  "CarMaker": "Manufacturer",
+  "CarYear": "Year",
+  "CarModel": "Car Model",
+  "AvailableOnline": "Available Online",
+  "Price": "Price",
+  "Description": "Description"
+}

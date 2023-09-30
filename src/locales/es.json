@@ -1,0 +1,18 @@
+{
+  "Acceder": "Acceder",
+  "usaCuenta": "Usa tu cuenta de UniAlpes",
+  "ingresaContra": "Ingresa tu contraseña",
+  "ingresaEmail": "Ingresa tu dirección de correo",
+  "irAContra": "Siguiente",
+  "encontrado": "Partes encontradas",
+  "invalidMail": "Tu correo no tiene el formato adecuado",
+  "invalidPass": "Tu contraseña no tiene el formato adecuado",
+  "ShowPswd": "Mostrar contraseña",
+
+  "CarMaker": "Fabricante",
+  "CarYear": "Año",
+  "CarModel": "Modelo del carro",
+  "AvailableOnline": "Disponible en linea",
+  "Price": "Precio",
+  "Description": "Descripción"
+}

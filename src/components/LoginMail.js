@@ -2,33 +2,38 @@ import React from "react";
 import { Form, Container, Button } from "react-bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 function LoginMail() {
   const [email, setEmail] = useState("");
-  const [emailValid, setEmailValid] = useState(false);
-  const [goToLink,setGoToLink] = useState("/")
-  
+  const [emailValid, setEmailValid] = useState(true);
+  const [goToLink, setGoToLink] = useState("/");
+
   const updateEmail = (event) => {
     setEmail(event.target.value);
     let emailRegex = /\S+@\S+\.\S+/;
     setEmailValid(emailRegex.test(email));
-    setGoToLink(emailValid?"/pswd":"/");
+    console.log(emailValid);
+    console.log(goToLink);
+    setGoToLink(emailValid ? "/pswd" : "/");
   };
 
   const handleButtonPress = () => {};
 
   return (
     <div>
-      <Container>
+      <Container style={{ "margin-top": "5rem" }}>
         <Form>
           <Form.Group>
-            <Form.Label>Acceder</Form.Label>
+            <Form.Label>
+              <FormattedMessage id="Acceder" />
+            </Form.Label>
             <br />
             <Form.Text className="text-muted">
-              Usa tu cuenta de UniAlpes
+              <FormattedMessage id="usaCuenta" />
             </Form.Text>
             <Form.Control
               type="email"
-              placeholder="Enter your email"
+              placeholder= "Ingresa tu correo"
               onChange={updateEmail}
               value={email}
               style={{ borderColor: emailValid ? "" : "red" }}
@@ -36,15 +41,17 @@ function LoginMail() {
 
             {!emailValid && (
               <Form.Text className="text-muted">
-                Your email does not have the correct format
+                <FormattedMessage id = "invalidMail"/>
               </Form.Text>
             )}
           </Form.Group>
         </Form>
         <br />
 
-        <Link to={goToLink} state={{email}}>
-          <Button onClick={handleButtonPress} >Lets go</Button>
+        <Link to={goToLink} state={{ email }}>
+          <Button onClick={handleButtonPress}>
+            <FormattedMessage id="irAContra" />
+          </Button>
         </Link>
       </Container>
     </div>

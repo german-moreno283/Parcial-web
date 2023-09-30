@@ -3,6 +3,7 @@ import { Row, Col, Card, Container } from "react-bootstrap";
 import Detail from "./Detail";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/gallery.css";
+import { FormattedMessage } from "react-intl";
 
 function Gallery() {
   const location = useLocation();
@@ -34,27 +35,32 @@ function Gallery() {
   return (
     <div>
       <Container>
-        <h2>Partes Encontradas</h2>
+        <h2>
+          <FormattedMessage id="encontrado" />
+        </h2>
         {rows.map((row, rowIndex) => (
           <Row key={rowIndex}>
             {row.map((part) => (
               <Col key={part.carModel} xs={12} sm={6} md={4}>
-                <Card
-                  className="mb-3 tarjeta"
-                  onClick={() => handleCardClick(part.carModel)}
+                <Link
+                  to={"/parts/" + carModel}
+                  state={{ carModel: part.carModel, canEdit: canEdit }}
+                  style={{ textDecoration: 'none' }}
                 >
-                  <div>
-                    <Card.Img src={part.image} alt={part.partName} />
-                    <h2>{part.partName}</h2>
-                    <h3>{part.carMaker}</h3>
-                    <p>
-                      {part.price} - {part.carYear}
-                    </p>
-                  </div>
-                  <Link to={"/parts/" + carModel} state={{carModel:part.carModel, canEdit:canEdit}}>
-                    Go to detail
-                  </Link>
-                </Card>
+                  <Card
+                    className="mb-3 tarjeta"
+                    onClick={() => handleCardClick(part.carModel)}
+                  >
+                    <div>
+                      <Card.Img src={part.image} alt={part.partName} />
+                      <h2>{part.partName}</h2>
+                      <h3>{part.carMaker}</h3>
+                      <p>
+                        {part.price} - {part.carYear}
+                      </p>
+                    </div>
+                  </Card>
+                </Link>
               </Col>
             ))}
           </Row>
