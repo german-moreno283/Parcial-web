@@ -21,19 +21,19 @@ function LoginMail() {
 
   return (
     <div>
-      <Container style={{ "margin-top": "5rem" }}>
+      <Container style={{ "margin-top": "5rem", display: "flex", "justifyContent":"center" ,"alignItems":"center" }}>
         <Form>
           <Form.Group>
-            <Form.Label>
+            <h2>
               <FormattedMessage id="Acceder" />
-            </Form.Label>
+            </h2>
+
+            <FormattedMessage id="usaCuenta" />
             <br />
-            <Form.Text className="text-muted">
-              <FormattedMessage id="usaCuenta" />
-            </Form.Text>
+            <br />
             <Form.Control
               type="email"
-              placeholder= "Ingresa tu correo"
+              placeholder="Ingresa tu correo"
               onChange={updateEmail}
               value={email}
               style={{ borderColor: emailValid ? "" : "red" }}
@@ -41,18 +41,19 @@ function LoginMail() {
 
             {!emailValid && (
               <Form.Text className="text-muted">
-                <FormattedMessage id = "invalidMail"/>
+                <FormattedMessage id="invalidMail" />
               </Form.Text>
             )}
           </Form.Group>
+          <br/>
+
+          <Link to={goToLink} state={{ email }}>
+            <Button onClick={handleButtonPress}>
+              <FormattedMessage id="irAContra" />
+            </Button>
+          </Link>
         </Form>
         <br />
-
-        <Link to={goToLink} state={{ email }}>
-          <Button onClick={handleButtonPress}>
-            <FormattedMessage id="irAContra" />
-          </Button>
-        </Link>
       </Container>
     </div>
   );
