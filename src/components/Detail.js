@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import "../styles/detail.css";
 import { FormattedMessage } from "react-intl";

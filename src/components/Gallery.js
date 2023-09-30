@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
-import Detail from "./Detail";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/gallery.css";
 import { FormattedMessage } from "react-intl";
