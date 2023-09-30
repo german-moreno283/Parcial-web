@@ -20,3 +20,5 @@ Para la relación entre vistas se usó el componente Link de react-bootstrap. La
 * Para internacionalización se usó intl, con archivos json para definir los id y el valor asignado.
 
 Durante la realización del código fue necesario hacer que la renderización de algunos elementos fuera condicional, esto especialmente para definir si se veía un input o un párrafo en la descripción.
+
+Debido a que el POST no estaba disponible la asignación de el tipo de usuario se hace de forma aleatoria.
